@@ -85,13 +85,7 @@ export default function EpisodeCard({
                     </button>
                 </div>
 
-                {/* Progress bar */}
-                <div className="progress-bar mt-3">
-                    <div
-                        className="progress-bar-fill"
-                        style={{ width: `${Math.floor(Math.random() * 40 + 60)}%` }}
-                    ></div>
-                </div>
+
             </div>
         </div>
     );

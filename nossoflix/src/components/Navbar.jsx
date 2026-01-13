@@ -1,8 +1,13 @@
 import { useState, useEffect } from 'react';
+import { heroContent as defaultHeroContent, coupleInfo as defaultCoupleInfo } from '../config';
 
-export default function Navbar({ onEasterEgg }) {
+export default function Navbar({ onEasterEgg, coupleInfo: propCoupleInfo, heroContent: propHeroContent }) {
     const [scrolled, setScrolled] = useState(false);
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+    // Usar props ou fallback para defaults
+    const coupleInfo = propCoupleInfo || defaultCoupleInfo;
+    const heroContent = propHeroContent || defaultHeroContent;
 
     useEffect(() => {
         const handleScroll = () => {
@@ -21,11 +26,14 @@ export default function Navbar({ onEasterEgg }) {
         { label: 'Créditos', href: '#creditos' },
     ];
 
+    // Gerar tagline dinâmica
+    const tagline = `histórias de ${coupleInfo?.creator?.name?.toLowerCase() || 'nós'} e ${coupleInfo?.partner?.name?.toLowerCase() || 'nosso amor'}`;
+
     return (
         <nav
             className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${scrolled
-                    ? 'glass-strong py-2 sm:py-3 shadow-2xl shadow-black/50'
-                    : 'bg-gradient-to-b from-black via-black/80 to-transparent py-4 sm:py-6'
+                ? 'glass-strong py-2 sm:py-3 shadow-2xl shadow-black/50'
+                : 'bg-gradient-to-b from-black via-black/80 to-transparent py-4 sm:py-6'
                 }`}
         >
             <div className="container-custom flex items-center justify-between">
@@ -35,10 +43,10 @@ export default function Navbar({ onEasterEgg }) {
                     onClick={onEasterEgg}
                 >
                     <h1 className="font-display text-2xl sm:text-3xl lg:text-4xl tracking-wider gradient-text group-hover:animate-pulse-slow transition-all">
-                        NOSSOFLIX
+                        {heroContent.title || 'NOSSOFLIX'}
                     </h1>
                     <span className="text-[9px] sm:text-[10px] text-gray-500 tracking-widest uppercase -mt-1 group-hover:text-gray-400 transition-colors">
-                        histórias de dois teimosos
+                        {tagline}
                     </span>
                 </div>
 

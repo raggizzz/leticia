@@ -45,11 +45,17 @@ export default function Carousel({ children, title, subtitle }) {
             <div className="container-custom">
                 {/* Title */}
                 {title && (
-                    <div className="mb-6">
-                        <h2 className="section-title">{title}</h2>
+                    <div className="mb-6 text-center">
+                        <h2 className="section-title justify-center">{title}</h2>
                         {subtitle && (
-                            <p className="text-gray-500 text-sm sm:text-base -mt-2 pl-7">{subtitle}</p>
+                            <p className="text-gray-500 text-sm sm:text-base -mt-2">{subtitle}</p>
                         )}
+                        {/* Instrução de interação - centralizada */}
+                        <p className="text-xs text-gray-600 mt-3 flex items-center gap-2 justify-center">
+                            <span className="hidden sm:inline">🖱️ Clique</span>
+                            <span className="sm:hidden">👆 Toque</span>
+                            <span>em um episódio para ler a história completa</span>
+                        </p>
                     </div>
                 )}
             </div>
@@ -81,10 +87,10 @@ export default function Carousel({ children, title, subtitle }) {
                 <div className={`absolute left-0 top-0 bottom-0 w-12 sm:w-20 carousel-gradient-left z-20 pointer-events-none transition-opacity ${canScrollLeft ? 'opacity-100' : 'opacity-0'}`}></div>
                 <div className={`absolute right-0 top-0 bottom-0 w-12 sm:w-20 carousel-gradient-right z-20 pointer-events-none transition-opacity ${canScrollRight ? 'opacity-100' : 'opacity-0'}`}></div>
 
-                {/* Scrollable Container */}
+                {/* Scrollable Container - Centralizado com w-fit */}
                 <div
                     ref={scrollRef}
-                    className="flex gap-4 sm:gap-6 overflow-x-auto hide-scrollbar px-4 sm:px-6 lg:px-12 py-4"
+                    className="flex gap-4 sm:gap-6 overflow-x-auto hide-scrollbar px-4 sm:px-6 lg:px-12 py-4 w-fit mx-auto max-w-full"
                     style={{ scrollSnapType: 'x mandatory' }}
                 >
                     {children}
